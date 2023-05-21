@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static by.tms.rest.api.dto.conversion.ConversionUtils.convertToStudent;
+import static by.tms.rest.api.utils.ServiceUtils.getStudentDto;
 
 @Service
 @RequiredArgsConstructor
@@ -27,9 +28,8 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentDto getStudent(Long id) {
         Optional<Student> student = studentRepository.findById(id);
-        return student.map(ConversionUtils::convertToStudentDto).orElse(null);
+        return getStudentDto(student);
     }
-
 
 
     @Override
@@ -39,11 +39,10 @@ public class StudentServiceImpl implements StudentService {
     }
 
 
-
     @Override
     public void updateStudent(Long id, StudentDto updatedStudent) {
-        StudentDto studentDto = getStudent(id);
-        if (studentDto != null) {
+        Optional<Student> student = studentRepository.findById(id);
+        if (student.isPresent()) {
             updatedStudent.setId(id);
             studentRepository.save(convertToStudent(updatedStudent));
         }
@@ -55,5 +54,17 @@ public class StudentServiceImpl implements StudentService {
         if (studentDto != null) {
             studentRepository.delete(convertToStudent(studentDto));
         }
+    }
+
+    @Override
+    public StudentDto getStudentByNameAndSurname(String name, String surname) {
+        Optional<Student> student = studentRepository.findByNameIgnoreCaseAndSurnameIgnoreCase(name, surname);
+        return getStudentDto(student);
+    }
+
+    @Override
+    public StudentDto getStudentByName(String name) {
+        Optional<Student> student = studentRepository.findByNameIgnoreCase(name);
+        return getStudentDto(student);
     }
 }

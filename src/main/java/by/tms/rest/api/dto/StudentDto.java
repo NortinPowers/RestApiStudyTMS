@@ -1,6 +1,5 @@
 package by.tms.rest.api.dto;
 
-import by.tms.rest.api.domain.City;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,6 +11,6 @@ public class StudentDto {
     private String name;
     private String surname;
     private Integer age;
-    private City city;
+    private CityDto city;
     private String course;
 }

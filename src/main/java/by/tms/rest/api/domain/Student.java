@@ -1,5 +1,6 @@
 package by.tms.rest.api.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -20,6 +21,7 @@ public class Student extends BaseEntity{
     private String name;
     private String surname;
     private Integer age;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;

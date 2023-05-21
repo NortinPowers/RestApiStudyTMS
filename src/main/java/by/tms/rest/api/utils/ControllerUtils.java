@@ -8,9 +8,7 @@ public class ControllerUtils {
 
     public static <T> void throwExceptionWhenNull(T object) {
         if (object == null) {
-//            throw new NotFoundException();
             throw new NotFoundException("Sorry, but NotFoundException!");
         }
     }
-
 }
