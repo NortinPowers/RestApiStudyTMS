@@ -3,15 +3,16 @@ package by.tms.rest.api.service.impl;
 import by.tms.rest.api.domain.City;
 import by.tms.rest.api.dto.CityDto;
 import by.tms.rest.api.dto.conversion.ConversionUtils;
+import by.tms.rest.api.exception.NotFoundException;
 import by.tms.rest.api.repository.CityRepository;
 import by.tms.rest.api.service.CityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import static by.tms.rest.api.dto.conversion.ConversionUtils.convertToCity;
+import static by.tms.rest.api.dto.conversion.ConversionUtils.convertToCityDto;
 
 @Service
 @RequiredArgsConstructor
@@ -26,8 +27,7 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public CityDto getCity(Long id) {
-        Optional<City> city = cityRepository.findById(id);
-        return city.map(ConversionUtils::convertToCityDto).orElse(null);
+        return convertToCityDto(cityRepository.findById(id).orElseThrow(NotFoundException::new));
     }
 
 

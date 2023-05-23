@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static by.tms.rest.api.utils.ControllerUtils.throwExceptionWhenNull;
-
 @RestController
 @RequestMapping("city")
 @RequiredArgsConstructor
@@ -29,9 +27,7 @@ public class CityController {
 
     @GetMapping("{id}")
     public CityDto getOne(@PathVariable Long id) {
-        CityDto city = cityService.getCity(id);
-        throwExceptionWhenNull(city);
-        return city;
+        return cityService.getCity(id);
     }
 
     @PostMapping
@@ -42,15 +38,12 @@ public class CityController {
 
     @PostMapping("{id}")
     public List<CityDto> update(@PathVariable Long id, @RequestBody CityDto cityDto) {
-        CityDto city = cityService.getCity(id);
-        throwExceptionWhenNull(city);
         cityService.updateCity(id, cityDto);
         return cityService.getAllCities();
     }
 
     @DeleteMapping("{id}")
     public List<CityDto> delete(@PathVariable Long id) {
-        throwExceptionWhenNull(cityService.getCity(id));
         cityService.deleteCity(id);
         return cityService.getAllCities();
     }
