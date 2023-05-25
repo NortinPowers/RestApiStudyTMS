@@ -17,5 +17,6 @@ public interface StudentService {
     void deleteStudent(Long id);
 
     StudentDto getStudentByNameAndSurname(String name, String surname);
+
     StudentDto getStudentByName(String name);
 }

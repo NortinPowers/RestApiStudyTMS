@@ -1,8 +1,15 @@
 package by.tms.rest.api.controller;
 
+import static by.tms.rest.api.utils.ResponseUtils.CREATION_MESSAGE;
+import static by.tms.rest.api.utils.ResponseUtils.DELETION_MESSAGE;
+import static by.tms.rest.api.utils.ResponseUtils.UPDATE_MESSAGE;
+import static by.tms.rest.api.utils.ResponseUtils.getSuccessResponse;
+
 import by.tms.rest.api.dto.StudentDto;
+import by.tms.rest.api.model.MessageResponse;
 import by.tms.rest.api.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,40 +28,40 @@ public class StudentController {
     private final StudentService studentService;
 
     @GetMapping
-    public List<StudentDto> getAll() {
-        return studentService.getAllStudents();
+    public ResponseEntity<List<StudentDto>> getAll() {
+        return ResponseEntity.ok(studentService.getAllStudents());
     }
 
     @GetMapping("{id}")
-    public StudentDto getOne(@PathVariable Long id) {
-        return studentService.getStudent(id);
+    public ResponseEntity<StudentDto> getOne(@PathVariable Long id) {
+        return ResponseEntity.ok(studentService.getStudent(id));
     }
 
     @PostMapping
-    public List<StudentDto> create(@RequestBody StudentDto studentDto) {
+    public ResponseEntity<MessageResponse> create(@RequestBody StudentDto studentDto) {
         studentService.addStudent(studentDto);
-        return studentService.getAllStudents();
+        return ResponseEntity.ok(getSuccessResponse(CREATION_MESSAGE, studentDto));
     }
 
     @PostMapping("{id}")
-    public List<StudentDto> update(@PathVariable Long id, @RequestBody StudentDto studentDto) {
+    public ResponseEntity<MessageResponse> update(@PathVariable Long id, @RequestBody StudentDto studentDto) {
         studentService.updateStudent(id, studentDto);
-        return studentService.getAllStudents();
+        return ResponseEntity.ok(getSuccessResponse(UPDATE_MESSAGE, studentDto));
     }
 
     @DeleteMapping("{id}")
-    public List<StudentDto> delete(@PathVariable Long id) {
+    public ResponseEntity<MessageResponse> delete(@PathVariable Long id) {
         studentService.deleteStudent(id);
-        return studentService.getAllStudents();
+        return ResponseEntity.ok(getSuccessResponse(DELETION_MESSAGE, StudentDto.builder().build()));
     }
 
     @GetMapping("name/{name}/surname/{surname}")
-    public StudentDto getOneByNameAndSurname(@PathVariable String name, @PathVariable String surname) {
-        return studentService.getStudentByNameAndSurname(name, surname);
+    public ResponseEntity<StudentDto> getOneByNameAndSurname(@PathVariable String name, @PathVariable String surname) {
+        return ResponseEntity.ok(studentService.getStudentByNameAndSurname(name, surname));
     }
 
     @GetMapping("name/{name}")
-    public StudentDto getOneByNameAndSurname(@PathVariable String name) {
-        return studentService.getStudentByName(name);
+    public ResponseEntity<StudentDto> getOneByNameAndSurname(@PathVariable String name) {
+        return ResponseEntity.ok(studentService.getStudentByName(name));
     }
 }
