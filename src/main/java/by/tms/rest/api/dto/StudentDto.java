@@ -11,6 +11,6 @@ public class StudentDto {
     private String name;
     private String surname;
     private Integer age;
-    private CityDto city;
+    private String cityName;
     private String course;
 }

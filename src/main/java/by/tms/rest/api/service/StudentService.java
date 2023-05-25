@@ -1,7 +1,6 @@
 package by.tms.rest.api.service;
 
 import by.tms.rest.api.dto.StudentDto;
-
 import java.util.List;
 
 public interface StudentService {
@@ -17,5 +16,6 @@ public interface StudentService {
     void deleteStudent(Long id);
 
     StudentDto getStudentByNameAndSurname(String name, String surname);
+
     StudentDto getStudentByName(String name);
 }

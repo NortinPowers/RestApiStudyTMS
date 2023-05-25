@@ -16,7 +16,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Student extends BaseEntity{
+public class Student extends BaseEntity {
 
     private String name;
     private String surname;

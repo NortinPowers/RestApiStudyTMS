@@ -1,24 +1,25 @@
 package by.tms.rest.api.service.impl;
 
+import static by.tms.rest.api.dto.conversion.ConversionUtils.convertToStudent;
+import static by.tms.rest.api.dto.conversion.ConversionUtils.convertToStudentDto;
+
 import by.tms.rest.api.domain.Student;
 import by.tms.rest.api.dto.StudentDto;
 import by.tms.rest.api.dto.conversion.ConversionUtils;
 import by.tms.rest.api.exception.NotFoundException;
+import by.tms.rest.api.repository.CityRepository;
 import by.tms.rest.api.repository.StudentRepository;
 import by.tms.rest.api.service.StudentService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-
-import static by.tms.rest.api.dto.conversion.ConversionUtils.convertToStudent;
-import static by.tms.rest.api.dto.conversion.ConversionUtils.convertToStudentDto;
 
 @Service
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
+    private final CityRepository cityRepository;
 
     @Override
     public List<StudentDto> getAllStudents() {
@@ -32,7 +33,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void addStudent(StudentDto studentDto) {
+        studentDto.setId(null);
         Student student = convertToStudent(studentDto);
+        student.setCity(cityRepository.findCityByName(studentDto.getCityName()).orElseThrow(NotFoundException::new));
         studentRepository.save(student);
     }
 

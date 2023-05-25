@@ -1,7 +1,6 @@
 package by.tms.rest.api.service;
 
 import by.tms.rest.api.dto.CityDto;
-
 import java.util.List;
 
 public interface CityService {
