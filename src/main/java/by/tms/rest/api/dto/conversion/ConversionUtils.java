@@ -9,7 +9,6 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class ConversionUtils {
 
-
     public static StudentDto convertToStudentDto(Student student) {
         return StudentDto.builder()
                          .id(student.getId())
