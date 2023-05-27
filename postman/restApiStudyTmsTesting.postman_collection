@@ -1,0 +1,616 @@
+{
+	"info": {
+		"_postman_id": "5e15e6f6-1a4f-47be-acce-33a6234b1796",
+		"name": "Rest Api Study TMS Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27534012"
+	},
+	"item": [
+		{
+			"name": "Student",
+			"item": [
+				{
+					"name": "/student",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/student",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student"
+							]
+						},
+						"description": "**GET**\n\n_http://localhost:8080/student_\n\nStatus **200**\n\n**Returns all students**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				},
+				{
+					"name": "/student/{id} 200",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/student/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"4"
+							]
+						},
+						"description": "**GET**\n\n[_http://localhost:8080/student/{id}_](http://localhost:8080/student/{id})\n\nStatus **200**\n\n**Returns the student by id**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| **id**  <br>_requared_ | number |"
+					},
+					"response": []
+				},
+				{
+					"name": "/student/{id} 404",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/student/40",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"40"
+							]
+						},
+						"description": "**GET**\n\n[_http://localhost:8080/student/{id}_](http://localhost:8080/student/{id})\n\nStatus **404**\n\n**Returns Not Found Exception when the student by id not found**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| **id**  <br>_requared_ | number |"
+					},
+					"response": []
+				},
+				{
+					"name": "/student create 200",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test\",\r\n    \"surname\": \"Testov\",\r\n    \"age\": 20,\r\n    \"city\": {\r\n        \"id\": 2,\r\n        \"name\": \"New York\",\r\n        \"info\": \"is the most populous city in the United States.\"\r\n    },\r\n    \"course\": \"23onl\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/student",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student"
+							]
+						},
+						"description": "**POST**\n\n[_http://localhost:8080/student_](http://localhost:8080/student/{id})\n\nStatus **200**\n\n**Create new student**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				},
+				{
+					"name": "/student create 500",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test\",\r\n    \"surname\": \"Testov\",\r\n    \"age\": 20,\r\n    \"city\": {\r\n        \"id\": 6,\r\n        \"name\": \"New York\",\r\n        \"info\": \"is the most populous city in the United States.\"\r\n    },\r\n    \"course\": \"23onl\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/student",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student"
+							]
+						},
+						"description": "**POST**\n\n[_http://localhost:8080/student_](http://localhost:8080/student/{id})\n\nStatus **500**\n\n**Returns an Internal Server Error if the transmitted student data is incorrect**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				},
+				{
+					"name": "/student update 200",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n        \"id\": 2,\r\n        \"name\": \"Elizabeth\",\r\n        \"surname\": \"Sanders\",\r\n        \"age\": 23,\r\n        \"city\": {\r\n            \"id\": 1,\r\n            \"name\": \"Minsk\",\r\n            \"info\": \"is the capital and the largest city of Belarus, located on the Svislach and the now subterranean Niamiha rivers.\"\r\n        },\r\n        \"course\": \"22onl\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/student/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"2"
+							]
+						},
+						"description": "**POST**\n\n[_http://localhost:8080/student/{id}_](http://localhost:8080/student/{id})\n\nStatus **200**\n\n**Updete the selected student**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				},
+				{
+					"name": "/student update 404",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n        \"id\": 2,\r\n        \"name\": \"Elizabeth\",\r\n        \"surname\": \"Sanders\",\r\n        \"age\": 23,\r\n        \"city\": {\r\n            \"id\": 1,\r\n            \"name\": \"Minsk\",\r\n            \"info\": \"is the capital and the largest city of Belarus, located on the Svislach and the now subterranean Niamiha rivers.\"\r\n        },\r\n        \"course\": \"22onl\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/student/40",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"40"
+							]
+						},
+						"description": "**POST**\n\n[_http://localhost:8080/student/{id}_](http://localhost:8080/student/{id})\n\nStatus **404**\n\nStartFragment\n\n**Returns Not Found Exception when the updated student not found**\n\nEndFragment\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				},
+				{
+					"name": "/student update 500",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n        \"id\": 2,\r\n        \"name\": \"Elizabeth\",\r\n        \"surname\": \"Sanders\",\r\n        \"age\": 23,\r\n        \"city\": {\r\n            \"id\": 6,\r\n            \"name\": \"Minsk\",\r\n            \"info\": \"is the capital and the largest city of Belarus, located on the Svislach and the now subterranean Niamiha rivers.\"\r\n        },\r\n        \"course\": \"22onl\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/student/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"2"
+							]
+						},
+						"description": "**POST**\n\n[_http://localhost:8080/student/{id}_](http://localhost:8080/student/{id})\n\nStatus **500**\n\n**Returns an Internal Server Error if the transmitted updated student data is incorrect**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				},
+				{
+					"name": "/student delete 200",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/student/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"2"
+							]
+						},
+						"description": "**DELETE**\n\n[_http://localhost:8080/student/{id}_](http://localhost:8080/student/{id})\n\nStatus **200**\n\n**Deletes the student by id**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				},
+				{
+					"name": "/student delete 404",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/student/40",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"40"
+							]
+						},
+						"description": "**DELETE**\n\n[_http://localhost:8080/student/{id}_](http://localhost:8080/student/{id})\n\nStatus **404**\n\n**Returns a Not Found Exception when the student being deleted by id is not found**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				},
+				{
+					"name": "/studentname/{name}/surname/{surname} 200",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/student/name/jerry/surname/carpenter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"name",
+								"jerry",
+								"surname",
+								"carpenter"
+							]
+						},
+						"description": "**GET**\n\n[_http://localhost:8080/student/name/{name}/surname/{surname}_](http://localhost:8080/student/{id})\n\nStatus **200**\n\n**Returns the student by name and surname**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				},
+				{
+					"name": "/studentname/{name}/surname/{surname} 404",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/student/name/ivan/surname/carpenter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"name",
+								"ivan",
+								"surname",
+								"carpenter"
+							]
+						},
+						"description": "**GET**\n\n[_http://localhost:8080/student/name/{name}/surname/{surname}_](http://localhost:8080/student/{id})\n\nStatus **404**\n\n**Returns Not Found Exception when the student by name or surname not found**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				},
+				{
+					"name": "/studentname/{name} 200",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/student/name/jerry",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"name",
+								"jerry"
+							]
+						},
+						"description": "**GET**\n\n[_http://localhost:8080/student/name/{name}_](http://localhost:8080/student/{id})\n\nStatus **200**\n\n**Returns the student by name**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				},
+				{
+					"name": "/studentname/{name} 404",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/student/name/gleb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"name",
+								"gleb"
+							]
+						},
+						"description": "**GET**\n\n[_http://localhost:8080/student/name/{name}_](http://localhost:8080/student/{id})\n\nStatus **404**\n\n**Returns Not Found Exception when the student by name not found**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "City",
+			"item": [
+				{
+					"name": "/city",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/city",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"city"
+							]
+						},
+						"description": "**GET**\n\n_http://localhost:8080/city_\n\nStatus **200**\n\n**Returns all cities**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				},
+				{
+					"name": "/city/{id} 200",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/city/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"city",
+								"2"
+							]
+						},
+						"description": "**GET**\n\n[_http://localhost:8080/city/{id}_](http://localhost:8080/student/{id})\n\nStatus **200**\n\n**Returns the city by id**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| **id**  <br>_requared_ | number |"
+					},
+					"response": []
+				},
+				{
+					"name": "/city/{id} 404",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/city/40",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"city",
+								"40"
+							]
+						},
+						"description": "**GET**\n\n[_http://localhost:8080/city/{id}_](http://localhost:8080/student/{id})\n\nStatus **404**\n\n**Returns Not Found Exception when the city by id not found**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| **id**  <br>_requared_ | number |"
+					},
+					"response": []
+				},
+				{
+					"name": "/city create 200",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Paris\",\r\n    \"info\": \"the capital of France, the largest city in this country by population. It is located on the banks of the Seine River in the northern part of the country, in the Ile-de-France region.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/city",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"city"
+							]
+						},
+						"description": "**POST**\n\n_http://localhost:8080/city_\n\nStatus **200**\n\n**Create new student**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				},
+				{
+					"name": "/city create 500",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"names\": \"Paris\",\r\n    \"info\": \"the capital of France, the largest city in this country by population. It is located on the banks of the Seine River in the northern part of the country, in the Ile-de-France region.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/city",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"city"
+							]
+						},
+						"description": "**POST**\n\n[_http://localhost:8080/city_](http://localhost:8080/student/{id})\n\nStatus **500**\n\n**Returns an Internal Server Error if the transmitted city data is incorrect**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				},
+				{
+					"name": "/city update 200",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Boston\",\r\n    \"info\": \"is one of the oldest municipalities in America, founded on the Shawmut Peninsula in 1630 by Puritan settlers from the English town of the same name.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/city/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"city",
+								"4"
+							]
+						},
+						"description": "**POST**\n\n[_http://localhost:8080/city/{id}_](http://localhost:8080/student/{id})\n\nStatus **200**\n\n**Updete the selected city**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				},
+				{
+					"name": "/city update 404",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Boston\",\r\n    \"info\": \"is one of the oldest municipalities in America, founded on the Shawmut Peninsula in 1630 by Puritan settlers from the English town of the same name.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/city/40",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"city",
+								"40"
+							]
+						},
+						"description": "**POST**\n\n[_http://localhost:8080/city/{id}_](http://localhost:8080/student/{id})\n\nStatus **404**\n\nStartFragment\n\n**Returns Not Found Exception when the updated city not found**\n\nEndFragment\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				},
+				{
+					"name": "/city update 500",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"names\": \"Boston\",\r\n    \"info\": \"is one of the oldest municipalities in America, founded on the Shawmut Peninsula in 1630 by Puritan settlers from the English town of the same name.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/city/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"city",
+								"4"
+							]
+						},
+						"description": "**POST**\n\n[_http://localhost:8080/city/{id}_](http://localhost:8080/student/{id})\n\nStatus **500**\n\n**Returns an Internal Server Error if the transmitted updated city data is incorrect**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				},
+				{
+					"name": "/city delete 200",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/city/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"city",
+								"2"
+							]
+						},
+						"description": "**DELETE**\n\n[_http://localhost:8080/city/{id}_](http://localhost:8080/student/{id})\n\nStatus **200**\n\n**Deletes the city by id**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				},
+				{
+					"name": "/city delete 404",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/city/40",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"city",
+								"40"
+							]
+						},
+						"description": "**DELETE**\n\n[_http://localhost:8080/city/{id}_](http://localhost:8080/student/{id})\n\nStatus **404**\n\n**Returns a Not Found Exception when the city being deleted by id is not found**\n\nPath parameters:\n\n| **name** | **type** |\n| --- | --- |\n| _\\-_ | \\- |"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
