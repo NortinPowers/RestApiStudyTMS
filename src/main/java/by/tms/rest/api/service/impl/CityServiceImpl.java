@@ -21,7 +21,9 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public List<CityDto> getAllCities() {
-        return cityRepository.findAll().stream().map(ConversionUtils::convertToCityDto).toList();
+        return cityRepository.findAll().stream()
+                             .map(ConversionUtils::convertToCityDto)
+                             .toList();
     }
 
     @Override

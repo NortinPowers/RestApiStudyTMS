@@ -9,9 +9,9 @@ public interface CityService {
 
     CityDto getCity(Long id);
 
-    void addCity(CityDto student);
+    void addCity(CityDto cityDto);
 
-    void updateCity(Long id, CityDto updatedStudent);
+    void updateCity(Long id, CityDto cityDto);
 
     void deleteCity(Long id);
 }
