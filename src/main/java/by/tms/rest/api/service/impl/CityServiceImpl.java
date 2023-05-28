@@ -1,11 +1,8 @@
 package by.tms.rest.api.service.impl;
 
-import static by.tms.rest.api.dto.conversion.ConversionUtils.convertToCity;
-import static by.tms.rest.api.dto.conversion.ConversionUtils.convertToCityDto;
-
 import by.tms.rest.api.domain.City;
 import by.tms.rest.api.dto.CityDto;
-import by.tms.rest.api.dto.conversion.ConversionUtils;
+import by.tms.rest.api.dto.conversion.Convertor;
 import by.tms.rest.api.exception.NotFoundException;
 import by.tms.rest.api.repository.CityRepository;
 import by.tms.rest.api.service.CityService;
@@ -18,24 +15,25 @@ import org.springframework.stereotype.Service;
 public class CityServiceImpl implements CityService {
 
     private final CityRepository cityRepository;
+    private final Convertor convertor;
 
     @Override
     public List<CityDto> getAllCities() {
         return cityRepository.findAll().stream()
-                             .map(ConversionUtils::convertToCityDto)
+                             .map(convertor::convertToCityDto)
                              .toList();
     }
 
     @Override
     public CityDto getCity(Long id) {
-        return convertToCityDto(cityRepository.findById(id).orElseThrow(NotFoundException::new));
+        return convertor.convertToCityDto(cityRepository.findById(id).orElseThrow(NotFoundException::new));
     }
 
 
     @Override
     public void addCity(CityDto cityDto) {
         cityDto.setId(null);
-        City city = convertToCity(cityDto);
+        City city = convertor.convertToCity(cityDto);
         cityRepository.save(city);
     }
 
@@ -45,7 +43,7 @@ public class CityServiceImpl implements CityService {
         CityDto cityDto = getCity(id);
         if (cityDto != null) {
             updatedCity.setId(id);
-            cityRepository.save(convertToCity(updatedCity));
+            cityRepository.save(convertor.convertToCity(updatedCity));
         }
     }
 
@@ -53,7 +51,7 @@ public class CityServiceImpl implements CityService {
     public void deleteCity(Long id) {
         CityDto cityDto = getCity(id);
         if (cityDto != null) {
-            cityRepository.delete(convertToCity(cityDto));
+            cityRepository.delete(convertor.convertToCity(cityDto));
         }
     }
 }

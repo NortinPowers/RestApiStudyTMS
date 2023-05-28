@@ -1,5 +1,8 @@
 package by.tms.rest.api.dto;
 
+import static by.tms.rest.api.utils.Constants.CITY_NAMES_VALIDATION_PATTERN;
+import static by.tms.rest.api.utils.Constants.STUDENT_NAMES_VALIDATION_PATTERN;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -17,18 +20,18 @@ public class StudentDto {
     private Long id;
     @Schema(description = "Student`s name", example = "Martin")
     @NotBlank(message = "The 'name' field is required")
-    @Pattern(regexp = "^[a-zA-Z][a-zA-Z-`_.]{1,30}$", message = "Incorrect student`s name")
+    @Pattern(regexp = STUDENT_NAMES_VALIDATION_PATTERN, message = "Incorrect student`s name")
     private String name;
     @Schema(description = "Student`s surname", example = "Blake")
     @NotBlank(message = "The 'surname' field is required")
-    @Pattern(regexp = "^[a-zA-Z][a-zA-Z-`_.]{1,30}$", message = "Incorrect student`s surname")
+    @Pattern(regexp = STUDENT_NAMES_VALIDATION_PATTERN, message = "Incorrect student`s surname")
     private String surname;
     @Schema(description = "Student`s age", example = "30")
     @Min(value = 3, message = "Incorrect student`s age")
     private Integer age;
     @Schema(description = "Student's city of residence", example = "New York")
     @NotBlank(message = "The 'cityName' field is required")
-    @Pattern(regexp = "[A-Za-z\\s]{1,40}", message = "Incorrect city`s name")
+    @Pattern(regexp = CITY_NAMES_VALIDATION_PATTERN, message = "Incorrect city`s name")
     private String cityName;
     @Schema(description = "Student`s course", example = "22onlTMS")
     @NotBlank

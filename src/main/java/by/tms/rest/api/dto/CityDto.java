@@ -1,5 +1,7 @@
 package by.tms.rest.api.dto;
 
+import static by.tms.rest.api.utils.Constants.CITY_NAMES_VALIDATION_PATTERN;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -16,7 +18,7 @@ public class CityDto {
     @Min(1)
     private Long id;
     @NotBlank(message = "The 'name' field is required")
-    @Pattern(regexp = "[A-Za-z\\s]{1,40}", message = "Incorrect city`s name")
+    @Pattern(regexp = CITY_NAMES_VALIDATION_PATTERN, message = "Incorrect city`s name")
     @Schema(description = "City`s name", example = "London")
     private String name;
     @Schema(description = "Information about the City", example = "Some information")

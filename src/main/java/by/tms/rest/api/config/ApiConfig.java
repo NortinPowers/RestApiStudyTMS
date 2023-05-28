@@ -1,11 +1,15 @@
 package by.tms.rest.api.config;
 
+import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
+
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.servers.Server;
 import java.util.List;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,5 +37,16 @@ public class ApiConfig {
                 .description("This API provides endpoints for managing student and city databases for a test project as part of TMS training")
                 .license(mitLicense);
         return new OpenAPI().info(info).servers(List.of(devServer));
+    }
+
+    @Bean
+    public ModelMapper modelMapper() {
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration()
+              .setMatchingStrategy(MatchingStrategies.STRICT)
+              .setFieldMatchingEnabled(true)
+              .setSkipNullEnabled(true)
+              .setFieldAccessLevel(PRIVATE);
+        return mapper;
     }
 }
