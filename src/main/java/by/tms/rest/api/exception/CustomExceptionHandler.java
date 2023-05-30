@@ -1,5 +1,6 @@
 package by.tms.rest.api.exception;
 
+import static by.tms.rest.api.utils.ResponseUtils.CITY_NOT_FOUND_EXCEPTION_MESSAGE;
 import static by.tms.rest.api.utils.ResponseUtils.DATA_INTEGRITY_VIOLATION_EXCEPTION_MESSAGE;
 import static by.tms.rest.api.utils.ResponseUtils.HTTP_NOT_READABLE_EXCEPTION_MESSAGE;
 import static by.tms.rest.api.utils.ResponseUtils.JPA_OBJECT_RETRIEVAL_FAILURE_EXCEPTION_MESSAGE;
@@ -26,6 +27,12 @@ public class CustomExceptionHandler {
     @ExceptionHandler(NotFoundException.class)
     private ResponseEntity<ResponseAble> handleException(NotFoundException exception) {
         by.tms.rest.api.model.ExceptionResponse response = getExceptionResponse(NOT_FOUND_EXCEPTION_MESSAGE, exception);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(CityNotFoundException.class)
+    private ResponseEntity<ResponseAble> handleException(CityNotFoundException exception) {
+        ExceptionResponse response = getExceptionResponse(CITY_NOT_FOUND_EXCEPTION_MESSAGE, exception);
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 

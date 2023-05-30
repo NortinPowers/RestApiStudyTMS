@@ -1,13 +1,16 @@
 package by.tms.rest.api.service.impl;
 
+import static by.tms.rest.api.utils.ObjectHandlerUtils.getIgnoreProperties;
+
 import by.tms.rest.api.domain.City;
 import by.tms.rest.api.dto.CityDto;
-import by.tms.rest.api.dto.conversion.Convertor;
+import by.tms.rest.api.dto.conversion.Convector;
 import by.tms.rest.api.exception.NotFoundException;
 import by.tms.rest.api.repository.CityRepository;
 import by.tms.rest.api.service.CityService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,25 +18,24 @@ import org.springframework.stereotype.Service;
 public class CityServiceImpl implements CityService {
 
     private final CityRepository cityRepository;
-    private final Convertor convertor;
+    private final Convector convector;
 
     @Override
     public List<CityDto> getAllCities() {
         return cityRepository.findAll().stream()
-                             .map(convertor::convertToCityDto)
+                             .map(city -> convector.convertToCityDto(city.getId(), city))
                              .toList();
     }
 
     @Override
     public CityDto getCity(Long id) {
-        return convertor.convertToCityDto(cityRepository.findById(id).orElseThrow(NotFoundException::new));
+        return convector.convertToCityDto(id, cityRepository.findById(id).orElseThrow(NotFoundException::new));
     }
 
 
     @Override
     public void addCity(CityDto cityDto) {
-        cityDto.setId(null);
-        City city = convertor.convertToCity(cityDto);
+        City city = convector.convertToCity(cityDto);
         cityRepository.save(city);
     }
 
@@ -42,8 +44,8 @@ public class CityServiceImpl implements CityService {
     public void updateCity(Long id, CityDto updatedCity) {
         CityDto cityDto = getCity(id);
         if (cityDto != null) {
-            updatedCity.setId(id);
-            cityRepository.save(convertor.convertToCity(updatedCity));
+            BeanUtils.copyProperties(updatedCity, cityDto, getIgnoreProperties(updatedCity, "id"));
+            cityRepository.save(convector.convertToCity(id, cityDto));
         }
     }
 
@@ -51,7 +53,7 @@ public class CityServiceImpl implements CityService {
     public void deleteCity(Long id) {
         CityDto cityDto = getCity(id);
         if (cityDto != null) {
-            cityRepository.delete(convertor.convertToCity(cityDto));
+            cityRepository.delete(convector.convertToCity(id, cityDto));
         }
     }
 }

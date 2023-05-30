@@ -15,6 +15,7 @@ public class ResponseUtils {
     public static final String UPDATE_MESSAGE = "The %s have been successful updated";
     public static final String DELETION_MESSAGE = "The %s have been successful deleted";
     public static final String NOT_FOUND_EXCEPTION_MESSAGE = "Specify the entered data";
+    public static final String CITY_NOT_FOUND_EXCEPTION_MESSAGE = "The entered city is not listed in the database";
     public static final String DATA_INTEGRITY_VIOLATION_EXCEPTION_MESSAGE = "The input data does not correspond to the required";
     public static final String JPA_OBJECT_RETRIEVAL_FAILURE_EXCEPTION_MESSAGE = "The data entered violates the established requirements";
     public static final String HTTP_NOT_READABLE_EXCEPTION_MESSAGE = "The entered data is incorrect and leads to an error";
