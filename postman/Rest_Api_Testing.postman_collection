@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "5e15e6f6-1a4f-47be-acce-33a6234b1796",
+		"_postman_id": "555be407-6be3-4fe6-815a-08f8c46624fd",
 		"name": "Rest Api Study TMS Testing",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "27534012"
+		"_exporter_id": "25542323"
 	},
 	"item": [
 		{
@@ -78,7 +78,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Test\",\r\n    \"surname\": \"Testov\",\r\n    \"age\": 20,\r\n    \"city\": {\r\n        \"id\": 2,\r\n        \"name\": \"New York\",\r\n        \"info\": \"is the most populous city in the United States.\"\r\n    },\r\n    \"course\": \"23onl\"\r\n}",
+							"raw": "{\r\n    \"name\": \"ViktorTest\",\r\n    \"surname\": \"Testov\",\r\n    \"age\": 22,\r\n    \"cityName\" : \"New York\",\r\n    \"course\": \"23onl\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -136,7 +136,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "  {\r\n        \"id\": 2,\r\n        \"name\": \"Elizabeth\",\r\n        \"surname\": \"Sanders\",\r\n        \"age\": 23,\r\n        \"city\": {\r\n            \"id\": 1,\r\n            \"name\": \"Minsk\",\r\n            \"info\": \"is the capital and the largest city of Belarus, located on the Svislach and the now subterranean Niamiha rivers.\"\r\n        },\r\n        \"course\": \"22onl\"\r\n    }",
+							"raw": "  {\r\n        \"id\": 2,\r\n        \"name\": \"Elizabeth\",\r\n        \"surname\": \"Sanders\",\r\n        \"age\": 23,\r\n        \"cityName\" : \"Boston\",\r\n        \"course\": \"22onl\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -166,7 +166,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "  {\r\n        \"id\": 2,\r\n        \"name\": \"Elizabeth\",\r\n        \"surname\": \"Sanders\",\r\n        \"age\": 23,\r\n        \"city\": {\r\n            \"id\": 1,\r\n            \"name\": \"Minsk\",\r\n            \"info\": \"is the capital and the largest city of Belarus, located on the Svislach and the now subterranean Niamiha rivers.\"\r\n        },\r\n        \"course\": \"22onl\"\r\n    }",
+							"raw": "  {\r\n        \"id\": 2,\r\n        \"name\": \"Elizabeth\",\r\n        \"surname\": \"Sanders\",\r\n        \"age\": 23,\r\n        \"cityName\" : \"Boston\",\r\n        \"course\": \"22onl\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -196,7 +196,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "  {\r\n        \"id\": 2,\r\n        \"name\": \"Elizabeth\",\r\n        \"surname\": \"Sanders\",\r\n        \"age\": 23,\r\n        \"city\": {\r\n            \"id\": 6,\r\n            \"name\": \"Minsk\",\r\n            \"info\": \"is the capital and the largest city of Belarus, located on the Svislach and the now subterranean Niamiha rivers.\"\r\n        },\r\n        \"course\": \"22onl\"\r\n    }",
+							"raw": "  {\r\n     \"id\": 2,\r\n        \"name\": \"Elizabeth\",\r\n        \"surname\": \"Sanders\",\r\n        \"age\": 23,\r\n        \"cityName\" : \"SomeCity\",\r\n        \"course\": \"22onl\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
