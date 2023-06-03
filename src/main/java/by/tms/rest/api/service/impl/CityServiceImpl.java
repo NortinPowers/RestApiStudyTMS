@@ -32,13 +32,11 @@ public class CityServiceImpl implements CityService {
         return convector.convertToCityDto(id, cityRepository.findById(id).orElseThrow(NotFoundException::new));
     }
 
-
     @Override
     public void addCity(CityDto cityDto) {
         City city = convector.convertToCity(cityDto);
         cityRepository.save(city);
     }
-
 
     @Override
     public void updateCity(Long id, CityDto updatedCity) {

@@ -44,7 +44,6 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.save(student);
     }
 
-
     @Override
     public void updateStudent(Long id, StudentDto updatedStudent) {
         StudentDto studentDto = getStudent(id);

@@ -109,7 +109,7 @@ public class StudentController {
     @DeleteMapping("{id}")
     public ResponseEntity<ResponseAble> delete(@PathVariable("id") @Min(1) Long id) {
         studentService.deleteStudent(id);
-        return ResponseEntity.ok(getSuccessResponse(DELETION_MESSAGE, StudentDto.builder().build()));
+        return ResponseEntity.ok(getSuccessResponse(DELETION_MESSAGE, new StudentDto()));
     }
 
     @Operation(

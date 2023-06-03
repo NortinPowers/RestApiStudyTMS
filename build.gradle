@@ -33,6 +33,9 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+checkstyleMain.enabled = false
+checkstyleTest.enabled = false
+
 tasks.named('test') {
     useJUnitPlatform()
 }

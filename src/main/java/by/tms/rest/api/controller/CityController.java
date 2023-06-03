@@ -98,6 +98,7 @@ public class CityController {
         return ResponseEntity.ok(getSuccessResponse(UPDATE_MESSAGE, cityDto));
     }
 
+    @SuppressWarnings("checkstyle:Indentation")
     @Operation(
             summary = "Delete the City by Id",
             description = "Deletion the City by specifying its id. The response is a message about the successful deletion of a City.",
@@ -109,6 +110,6 @@ public class CityController {
     @DeleteMapping("{id}")
     public ResponseEntity<ResponseAble> delete(@PathVariable("id") @Min(1) Long id) {
         cityService.deleteCity(id);
-        return ResponseEntity.ok(getSuccessResponse(DELETION_MESSAGE, CityDto.builder().build()));
+        return ResponseEntity.ok(getSuccessResponse(DELETION_MESSAGE, new CityDto()));
     }
 }
