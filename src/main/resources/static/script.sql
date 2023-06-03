@@ -31,12 +31,12 @@ create table students
     course  varchar(30)
 );
 
-comment on table students is 'students_db for lesson21';
+comment on table students is 'students_db';
 
 alter table students
     owner to postgres;
 
-comment on table students is 'students_db for lesson21';
+comment on table students is 'students_db';
 
 alter table students
     owner to postgres;
