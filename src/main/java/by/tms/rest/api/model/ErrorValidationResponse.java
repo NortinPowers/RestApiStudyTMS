@@ -13,6 +13,6 @@ public class ErrorValidationResponse extends CustomApiResponse implements Respon
 
     @Schema(description = "List of validation errors", type = "array", example = "[\"The 'name' field is required\", \"Some validation error\"]")
     private List<String> errors;
-    @Schema(description = "Exception type", example = "Some exception")
+    @Schema(description = "Exception type", example = "Some validation exception")
     private String type;
 }

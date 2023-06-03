@@ -12,6 +12,6 @@ public class ExceptionResponse extends CustomApiResponse implements ResponseAble
 
     @Schema(description = "Message describing the exception", example = "Some message")
     private String message;
-    @Schema(description = "Exception type", example = "Data validation exception")
+    @Schema(description = "Exception type", example = "Some exception type")
     private String type;
 }
