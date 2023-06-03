@@ -42,6 +42,7 @@ public class CityController {
 
     private final CityService cityService;
 
+    @SuppressWarnings("checkstyle:Indentation")
     @Operation(
             summary = "Retrieve a all Cities",
             description = "Collect all Cities. The answer is an array of Cities with an identifier, name and some information for each of the array element.",
@@ -55,6 +56,7 @@ public class CityController {
         return ResponseEntity.ok(cityService.getAllCities());
     }
 
+    @SuppressWarnings("checkstyle:Indentation")
     @Operation(
             summary = "Retrieve a City by Id",
             description = "Get a City object by specifying its id. The response is City with identifier, name and some info.",
@@ -68,6 +70,7 @@ public class CityController {
         return ResponseEntity.ok(cityService.getCity(id));
     }
 
+    @SuppressWarnings("checkstyle:Indentation")
     @Operation(
             summary = "Create a new City",
             description = "Create a City. The response is a message about the successful creation of a City.",
@@ -83,6 +86,7 @@ public class CityController {
         return ResponseEntity.ok(getSuccessResponse(CREATION_MESSAGE, cityDto));
     }
 
+    @SuppressWarnings("checkstyle:Indentation")
     @Operation(
             summary = "Update the City by Id",
             description = "Update the City by specifying its id. The response is a message about the successful update a City.",

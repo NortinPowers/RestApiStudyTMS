@@ -42,6 +42,7 @@ public class StudentController {
 
     private final StudentService studentService;
 
+    @SuppressWarnings("checkstyle:Indentation")
     @Operation(
             summary = "Retrieve a all Students",
             description = "Collect all Students. The answer is an array of Students with an identifier, name, surname, age, city name and course for each of the array element.",
@@ -55,6 +56,7 @@ public class StudentController {
         return ResponseEntity.ok(studentService.getAllStudents());
     }
 
+    @SuppressWarnings("checkstyle:Indentation")
     @Operation(
             summary = "Retrieve a Student by Id",
             description = "Get a Student object by specifying its id. The response is Student with an identifier, name, surname, age, city name and course.",
@@ -68,6 +70,7 @@ public class StudentController {
         return ResponseEntity.ok(studentService.getStudent(id));
     }
 
+    @SuppressWarnings("checkstyle:Indentation")
     @Operation(
             summary = "Create a new Student",
             description = "Create a Student. The response is a message about the successful creation of a Student.",
@@ -83,6 +86,7 @@ public class StudentController {
         return ResponseEntity.ok(getSuccessResponse(CREATION_MESSAGE, studentDto));
     }
 
+    @SuppressWarnings("checkstyle:Indentation")
     @Operation(
             summary = "Update the Student by Id",
             description = "Update the Student by specifying its id. The response is a message about the successful update a Student.",
@@ -98,6 +102,7 @@ public class StudentController {
         return ResponseEntity.ok(getSuccessResponse(UPDATE_MESSAGE, studentDto));
     }
 
+    @SuppressWarnings("checkstyle:Indentation")
     @Operation(
             summary = "Delete the Student by Id",
             description = "Deletion the Student by specifying its id. The response is a message about the successful deletion of a Student.",
@@ -112,6 +117,7 @@ public class StudentController {
         return ResponseEntity.ok(getSuccessResponse(DELETION_MESSAGE, new StudentDto()));
     }
 
+    @SuppressWarnings("checkstyle:Indentation")
     @Operation(
             summary = "Retrieve a Student by Name and Surname",
             description = "Get a Student object by specifying its name and surname. The response is Student with an identifier, name, surname, age, city name and course.",
@@ -125,6 +131,7 @@ public class StudentController {
         return ResponseEntity.ok(studentService.getStudentByNameAndSurname(name, surname));
     }
 
+    @SuppressWarnings("checkstyle:Indentation")
     @Operation(
             summary = "Retrieve a Student by Name",
             description = "Get a Student object by specifying its name. The response is Student with an identifier, name, surname, age, city name and course.",
