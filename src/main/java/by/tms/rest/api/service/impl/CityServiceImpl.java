@@ -4,7 +4,7 @@ import static by.tms.rest.api.utils.ObjectHandlerUtils.getIgnoreProperties;
 
 import by.tms.rest.api.domain.City;
 import by.tms.rest.api.dto.CityDto;
-import by.tms.rest.api.dto.conversion.Convector;
+import by.tms.rest.api.dto.converter.CityConverter;
 import by.tms.rest.api.exception.NotFoundException;
 import by.tms.rest.api.repository.CityRepository;
 import by.tms.rest.api.service.CityService;
@@ -18,23 +18,23 @@ import org.springframework.stereotype.Service;
 public class CityServiceImpl implements CityService {
 
     private final CityRepository cityRepository;
-    private final Convector convector;
+    private final CityConverter converter;
 
     @Override
     public List<CityDto> getAllCities() {
         return cityRepository.findAll().stream()
-                             .map(city -> convector.convertToCityDto(city.getId(), city))
+                             .map(city -> converter.convertToCityDto(city.getId(), city))
                              .toList();
     }
 
     @Override
     public CityDto getCity(Long id) {
-        return convector.convertToCityDto(id, cityRepository.findById(id).orElseThrow(NotFoundException::new));
+        return converter.convertToCityDto(id, cityRepository.findById(id).orElseThrow(NotFoundException::new));
     }
 
     @Override
     public void addCity(CityDto cityDto) {
-        City city = convector.convertToCity(cityDto);
+        City city = converter.convertToCity(cityDto);
         cityRepository.save(city);
     }
 
@@ -43,7 +43,7 @@ public class CityServiceImpl implements CityService {
         CityDto cityDto = getCity(id);
         if (cityDto != null) {
             BeanUtils.copyProperties(updatedCity, cityDto, getIgnoreProperties(updatedCity, "id"));
-            cityRepository.save(convector.convertToCity(id, cityDto));
+            cityRepository.save(converter.convertToCity(id, cityDto));
         }
     }
 
@@ -51,7 +51,7 @@ public class CityServiceImpl implements CityService {
     public void deleteCity(Long id) {
         CityDto cityDto = getCity(id);
         if (cityDto != null) {
-            cityRepository.delete(convector.convertToCity(id, cityDto));
+            cityRepository.delete(converter.convertToCity(id, cityDto));
         }
     }
 }

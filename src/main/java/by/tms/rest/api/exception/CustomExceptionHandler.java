@@ -26,7 +26,7 @@ public class CustomExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
     private ResponseEntity<ResponseAble> handleException(NotFoundException exception) {
-        by.tms.rest.api.model.ExceptionResponse response = getExceptionResponse(NOT_FOUND_EXCEPTION_MESSAGE, exception);
+        ExceptionResponse response = getExceptionResponse(NOT_FOUND_EXCEPTION_MESSAGE, exception);
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 

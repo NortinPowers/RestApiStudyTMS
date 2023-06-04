@@ -5,7 +5,7 @@ import static by.tms.rest.api.utils.ObjectHandlerUtils.getIgnoreProperties;
 import by.tms.rest.api.domain.City;
 import by.tms.rest.api.domain.Student;
 import by.tms.rest.api.dto.StudentDto;
-import by.tms.rest.api.dto.conversion.Convector;
+import by.tms.rest.api.dto.converter.StudentConverter;
 import by.tms.rest.api.exception.CityNotFoundException;
 import by.tms.rest.api.exception.NotFoundException;
 import by.tms.rest.api.repository.CityRepository;
@@ -23,23 +23,23 @@ public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
     private final CityRepository cityRepository;
-    private final Convector convector;
+    private final StudentConverter converter;
 
     @Override
     public List<StudentDto> getAllStudents() {
         return studentRepository.findAll().stream()
-                                .map(student -> convector.convertToStudentDto(student.getId(), student))
+                                .map(student -> converter.convertToStudentDto(student.getId(), student))
                                 .toList();
     }
 
     @Override
     public StudentDto getStudent(Long id) {
-        return convector.convertToStudentDto(id, studentRepository.findById(id).orElseThrow(NotFoundException::new));
+        return converter.convertToStudentDto(id, studentRepository.findById(id).orElseThrow(NotFoundException::new));
     }
 
     @Override
     public void addStudent(StudentDto studentDto) {
-        Student student = convector.convertToStudent(studentDto);
+        Student student = converter.convertToStudent(studentDto);
         student.setCity(cityRepository.findCityByName(studentDto.getCityName()).orElseThrow(CityNotFoundException::new));
         studentRepository.save(student);
     }
@@ -51,7 +51,7 @@ public class StudentServiceImpl implements StudentService {
             Optional<City> optionalCity = cityRepository.findCityByName(updatedStudent.getCityName());
             if (optionalCity.isPresent()) {
                 BeanUtils.copyProperties(updatedStudent, studentDto, getIgnoreProperties(updatedStudent, "id"));
-                Student student = convector.convertToStudent(id, studentDto);
+                Student student = converter.convertToStudent(id, studentDto);
                 student.setCity(optionalCity.get());
                 studentRepository.save(student);
             }
@@ -62,19 +62,19 @@ public class StudentServiceImpl implements StudentService {
     public void deleteStudent(Long id) {
         StudentDto studentDto = getStudent(id);
         if (studentDto != null) {
-            studentRepository.delete(convector.convertToStudent(id, studentDto));
+            studentRepository.delete(converter.convertToStudent(id, studentDto));
         }
     }
 
     @Override
     public StudentDto getStudentByNameAndSurname(String name, String surname) {
         Student student = studentRepository.findByNameIgnoreCaseAndSurnameIgnoreCase(name, surname).orElseThrow(NotFoundException::new);
-        return convector.convertToStudentDto(student.getId(), student);
+        return converter.convertToStudentDto(student.getId(), student);
     }
 
     @Override
     public StudentDto getStudentByName(String name) {
         Student student = studentRepository.findByNameIgnoreCase(name).orElseThrow(NotFoundException::new);
-        return convector.convertToStudentDto(student.getId(), student);
+        return converter.convertToStudentDto(student.getId(), student);
     }
 }
