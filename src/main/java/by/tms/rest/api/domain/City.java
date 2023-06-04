@@ -5,16 +5,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.List;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
+import lombok.Setter;
 
 @Entity
 @Table(name = "cities")
 @NoArgsConstructor
-@SuperBuilder
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(callSuper = true)
 public class City extends BaseEntity {
 

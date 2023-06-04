@@ -1,6 +1,7 @@
 package by.tms.rest.api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,9 +9,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class MessageResponse {
+public class MessageResponse extends CustomApiResponse implements ResponseAble {
 
-    private final Long timestamp = System.currentTimeMillis();
+    @Schema(description = "A message describing the completed request", example = "Some message")
     private String message;
     @JsonIgnore
     private Object object;
